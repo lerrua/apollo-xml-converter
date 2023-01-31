@@ -1,7 +1,11 @@
+import json
+
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+
+from xml_converter.services import XmlConverterService
 
 
 class ConverterViewSet(ViewSet):
@@ -11,4 +15,5 @@ class ConverterViewSet(ViewSet):
 
     @action(methods=["POST"], detail=False, url_path="convert")
     def convert(self, request, **kwargs):
-        return Response({})
+        xml_dict = XmlConverterService(request.data["file"]).convert_to_dict()
+        return Response(json.dumps(xml_dict))
