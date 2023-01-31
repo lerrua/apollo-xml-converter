@@ -1,10 +1,15 @@
-<html>
-    <head></head>
-    <body>
-        <p>
-            Modify this page to include a form where users can submit an XML file.
-            When they click on the submit button, the XML file should be converted into JSON and
-            returned to the user.
-        </p>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="flex items-center justify-center h-screen">
+        <form url="/api/converter/convert/" class="bg-white p-6 rounded-lg shadow-md" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="text-lg font-medium mb-4">Upload a XML file</h2>
+            {{ form }}
+            <!-- <div class="mb-4"> -->
+            <!--     <input type="file" name="file" required class="border p-2 w-full"> -->
+            <!-- </div> -->
+            <button class="bg-indigo-500 text-white p-2 rounded-full hover:bg-indigo-600">Submit</button>
+        </form>
+    </div>
+{% endblock %}
