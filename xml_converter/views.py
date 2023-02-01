@@ -9,7 +9,7 @@ def upload_page(request):
     if request.method == 'POST':
         form = XMLConverterFileForm(request.POST, request.FILES)
         if form.is_valid():
-            xml_dict = XmlConverterService(request.FILES['file']).convert_to_dict()
+            xml_dict = XmlConverterService(request.FILES['file']).convert_to_dict(custom_format=True)
             return JsonResponse(xml_dict)
     else:
         form = XMLConverterFileForm()

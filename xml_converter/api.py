@@ -1,5 +1,3 @@
-import json
-
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.parsers import MultiPartParser
@@ -22,5 +20,5 @@ class ConverterViewSet(ViewSet):
         if not xml_file.name.endswith('.xml'):
             return Response({'error': 'File extension "json" is not allowed. Allowed extensions are: xml.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        xml_dict = XmlConverterService(request.data["file"]).convert_to_dict()
-        return Response(json.dumps(xml_dict))
+        xml_dict = XmlConverterService(request.data["file"]).convert_to_dict(custom_format=True)
+        return Response(xml_dict)
