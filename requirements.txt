@@ -1,3 +1,4 @@
 django
 django-rest-framework
 xmltodict==0.13.0
+black
